@@ -1,0 +1,4 @@
+networks:
+  host
+#  test-monitoring:
+#    driver: host

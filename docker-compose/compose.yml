@@ -1,0 +1,51 @@
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prom_data:/prometheus
+#    networks:
+#      - ${GLOBAL_NETWORK}
+
+  blackbox:
+    image: bitnami/blackbox-exporter:latest
+    ports:
+      - 9115:9115
+#    networks:
+#      - ${GLOBAL_NETWORK}
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=khesam109
+      - GF_SECURITY_ADMIN_PASSWORD=salamsalam
+    volumes:
+      - ./grafana:/etc/grafana/provisioning/datasources
+#    networks:
+#      - ${GLOBAL_NETWORK}
+
+  backend:
+    image: com.khesam/monitoring:2.0.0
+    container_name: test_monitoring
+    ports:
+      - 8585:8585
+#    networks:
+#      - ${GLOBAL_NETWORK}
+
+volumes:
+  prom_data:
+
+#networks:
+#  kc_net:
+#    external: true
+#    name: test-monitoring
