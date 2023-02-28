@@ -29,8 +29,13 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=khesam109
       - GF_SECURITY_ADMIN_PASSWORD=salamsalam
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/blackbox-exporter.json
+
     volumes:
-      - ./grafana:/etc/grafana/provisioning/datasources
+#      - ./grafana:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
 #    networks:
 #      - ${GLOBAL_NETWORK}
 
