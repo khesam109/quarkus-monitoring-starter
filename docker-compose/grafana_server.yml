@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana-server
+    hostname: grafana.gov
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=khesam109
+      - GF_SECURITY_ADMIN_PASSWORD=salamsalam
+      - GF_SERVER_PROTOCOL=https
+      - GF_SERVER_CERT_FILE=/home/grafana/certs/grafana.crt
+      - GF_SERVER_CERT_KEY=/home/grafana/certs/grafana.key
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/blackbox-exporter.json
+
+    volumes:
+      #      - ./grafana:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+      #      - ./grafana/config/test:/etc/apk/repositories
+      #      - ./grafana/config/grafana.ini:/etc/grafana/asghar/grafana.ini
+      - ./tls/grafana:/home/grafana/certs
+#    networks:
+#      - ${GLOBAL_NETWORK}
