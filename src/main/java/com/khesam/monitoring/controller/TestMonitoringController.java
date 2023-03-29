@@ -25,11 +25,11 @@ public class TestMonitoringController implements TestMonitoringRestResource {
     }
 
     @Override
-    @Counted(value = "com.khesam.monitoring", description = "count requests count!", recordFailuresOnly = true)
+//    @Counted(value = "com.khesam.monitoring", description = "count requests count!", recordFailuresOnly = true)
     public Response count(String failed) {
         if (failed.equalsIgnoreCase("failed"))
             throw new WebApplicationException(
-                    Response.status(415).build()
+                    Response.status(500).build()
             );
         return Response.noContent().build();
     }

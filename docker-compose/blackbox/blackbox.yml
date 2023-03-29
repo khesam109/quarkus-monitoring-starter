@@ -1,0 +1,7 @@
+modules:
+  tcp_connect:
+    prober: tcp
+    tcp:
+      tls: false
+      tls_config:
+        insecure_skip_verify: true
