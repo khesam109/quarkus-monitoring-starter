@@ -17,10 +17,10 @@ scrape_configs:
     metrics_path: /metrics
     scheme: https
     tls_config:
-      ca_file: /home/prometheus/certs/prometheus.crt
+      ca_file: /home/prometheus/tls/prometheus.crt
     static_configs:
       - targets:
-          - prometheus:9090
+          - prometheus.gov:9090
 
 
   # if adding other group, add [job_name] section like follows
@@ -28,23 +28,23 @@ scrape_configs:
   - job_name: Khesam Monitoring
     metrics_path: /q/metrics
     static_configs:
-      - targets: ['backend:8585']
+      - targets: ['backend.gov:8585']
 
 
   - job_name: blackbox
     metrics_path: /probe
     scheme: https
     tls_config:
-      ca_file: /home/prometheus/certs/blackbox.crt
+      ca_file: /home/prometheus/tls/blackbox.crt
     params:
       module: [ tcp_connect ]
     static_configs:
       - targets:
-          - asghar:8685
+          - 192.168.165.96:8685
     relabel_configs:
       - source_labels: [ __address__ ]
         target_label: __param_target
       - source_labels: [ __param_target ]
         target_label: instance
       - target_label: __address__
-        replacement: blackbox:9115
+        replacement: blackbox.gov:9115

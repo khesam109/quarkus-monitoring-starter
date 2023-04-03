@@ -3,6 +3,7 @@ services:
   backend:
     image: com.khesam/monitoring:2.0.0
     container_name: backend
+    hostname: backend.gov
     ports:
       - "8585:8585"
 #    networks:

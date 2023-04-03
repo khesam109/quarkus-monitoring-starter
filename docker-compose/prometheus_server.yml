@@ -7,12 +7,12 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--web.config.file=/etc/prometheus/web-config.yml'
-      - '--web.external-url=https://prometheus/'
+      - '--web.external-url=https://prometheus.gov/'
     ports:
       - "9090:9090"
     restart: unless-stopped
     volumes:
-      - ./tls/prometheus:/home/prometheus/certs
+      - ./tls/prometheus:/home/prometheus/tls
       - ./prometheus:/etc/prometheus
       - prom_data:/prometheus
 #    networks:

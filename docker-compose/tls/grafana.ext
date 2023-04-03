@@ -2,5 +2,5 @@ subjectKeyIdentifier   = hash
 authorityKeyIdentifier = keyid:always,issuer:always
 basicConstraints       = CA:TRUE
 keyUsage               = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment, keyAgreement, keyCertSign
-subjectAltName         = DNS:grafana, DNS:*.grafana
+subjectAltName         = DNS:grafana.gov, DNS:*.grafana.gov
 issuerAltName          = issuer:copy
