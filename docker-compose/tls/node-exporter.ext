@@ -1,0 +1,6 @@
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid:always,issuer:always
+basicConstraints       = CA:TRUE
+keyUsage               = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment, keyAgreement, keyCertSign
+subjectAltName         = DNS:node-exporter.gov, DNS:*.node-exporter.gov
+issuerAltName          = issuer:copy

@@ -25,11 +25,22 @@ scrape_configs:
 
   # if adding other group, add [job_name] section like follows
   # any name is OK for [job_name]
-  - job_name: Khesam Monitoring
+  - job_name: backend
     metrics_path: /q/metrics
     static_configs:
       - targets: ['backend.gov:8585']
 
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor.gov:8080']
+
+  - job_name: node-exporter
+    scheme: https
+    metrics_path: /metrics
+    tls_config:
+      ca_file: /home/prometheus/tls/node-exporter.crt
+    static_configs:
+      - targets: ['node-exporter.gov:9100']
 
   - job_name: blackbox
     metrics_path: /probe

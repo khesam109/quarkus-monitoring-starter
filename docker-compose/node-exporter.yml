@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  node-exporter:
+    image: prom/node-exporter:master
+    container_name: node-exporter
+    hostname: node-exporter.gov
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+      - ./tls/node-exporter:/home/node-exporter/tls
+      - ./node-exporter:/etc/node-exporter
+    command:
+      - '--web.config.file=/etc/node-exporter/web-config.yml'
+      - --path.procfs=/host/proc
+      - --path.sysfs=/host/sys
+      - --path.rootfs=/host/root
+      - --collector.filesystem.ignored-mount-points
+      - ^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)
+#    networks:
+#      - ${GLOBAL_NETWORK}

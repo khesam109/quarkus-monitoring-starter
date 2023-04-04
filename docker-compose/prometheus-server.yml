@@ -11,6 +11,8 @@ services:
     ports:
       - "9090:9090"
     restart: unless-stopped
+#    extra_hosts:
+#      - "node-exporter.gov:192.169.165.96"
     volumes:
       - ./tls/prometheus:/home/prometheus/tls
       - ./prometheus:/etc/prometheus
