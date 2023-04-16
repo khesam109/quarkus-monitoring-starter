@@ -1,12 +1,14 @@
-version: '3.7'
+version: '3.9'
 services:
   cadvisor:
     image: google/cadvisor:latest
     container_name: cadvisor
     hostname: cadvisor.gov
     ports:
-      - "8080:8080"
+      - "9101:9101"
     privileged: true
+    command:
+      - '-port=9101'
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw

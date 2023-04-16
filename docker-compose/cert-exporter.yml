@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  cert-exporter:
+    image: amimof/node-cert-exporter:latest
+    container_name: cert-exporter
+    hostname: cert-exporter.gov
+    ports:
+      - "9117:9117"
+    command:
+      - '--logtostderr=true'
+      - '--include-glob=/home/tls/blackbox/*.crt'
+    volumes:
+      - ./tls:/home/tls
+#    networks:
+#      - ${GLOBAL_NETWORK}
