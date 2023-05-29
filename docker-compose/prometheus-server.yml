@@ -11,13 +11,22 @@ services:
     ports:
       - "9090:9090"
     restart: unless-stopped
-#    extra_hosts:
-#      - "node-exporter.gov:192.169.165.96"
     volumes:
       - ./tls/prometheus:/home/prometheus/tls
       - ./prometheus:/etc/prometheus
-      - prom_data:/prometheus
+      - ./storage/prometheus-storage:/prometheus
 #    networks:
 #      - ${GLOBAL_NETWORK}
+#  alert-manager:
+#    image: prom/alertmanager
+#    container_name: alert-manager
+#    hostname: alertmanager.gov
+#    command:
+#      - '--config.file=/etc/alertmanager/alertmanager.yml'
+#      - '--web.external-url=http://alertmanager.gov:9093'
+#    ports:
+#      - "9093:9093"
+#    volumes:
+#      - ./alert-manager:/etc/alertmanager
 volumes:
   prom_data:

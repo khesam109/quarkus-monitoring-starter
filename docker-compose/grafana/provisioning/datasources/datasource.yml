@@ -1,3 +1,5 @@
+#https://grafana.com/docs/grafana/latest/datasources/prometheus/
+#https://grafana.com/docs/grafana/latest/administration/provisioning/#json-data
 apiVersion: 1
 
 datasources:
@@ -6,38 +8,41 @@ datasources:
     url: https://prometheus.gov:9090
     isDefault: true
     access: proxy
-    editable: true
+    editable: false
     jsonData:
+      httpMethod: POST
+      prometheusType: Prometheus
+      cacheLevel: 'High'
       tlsAuthWithCACert: true
     secureJsonData:
       tlsCACert: |
         -----BEGIN CERTIFICATE-----
-        MIIFAjCCA+qgAwIBAgIUafUqlMzBBlX4kiuDt/zYgVbt9h4wDQYJKoZIhvcNAQEL
-        BQAwgYcxCzAJBgNVBAYTAklSMQ8wDQYDVQQIDAZUZWhyYW4xDzANBgNVBAcMBlRl
-        aHJhbjEMMAoGA1UECgwDSVNDMQwwCgYDVQQLDANTRVMxFzAVBgNVBAMMDnByb21l
-        dGhldXMuZ292MSEwHwYJKoZIhvcNAQkBFhJwcm9tZXRoZXVzQGlzYy5nb3YwHhcN
-        MjMwNDAzMDcwODAwWhcNMjMwNTAzMDcwODAwWjCBhzELMAkGA1UEBhMCSVIxDzAN
-        BgNVBAgMBlRlaHJhbjEPMA0GA1UEBwwGVGVocmFuMQwwCgYDVQQKDANJU0MxDDAK
-        BgNVBAsMA1NFUzEXMBUGA1UEAwwOcHJvbWV0aGV1cy5nb3YxITAfBgkqhkiG9w0B
-        CQEWEnByb21ldGhldXNAaXNjLmdvdjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
-        AQoCggEBANtF/nAXyNn7GPyHNHtJY6MfaYpa56u51UZ3lgZBrW0vC0AcB8QDlgK2
-        S4zEq3fCun1MxY4X1dAgfsZD5WSzx8/E0RIMLYV83J5SEPLP5kvtwPxztx/WxafH
-        o/hGYXPN4rhMXDcJACRnw++NLajD5NvRwl9ar7B8l0dSQmPZes+zYHde40D4JSqD
-        gLwf5EowJQQdIPeMCUmbZ3ipOlhZs+zJdGKaybJA8WbN6vli0pn9J5O5+uD5Lx9d
-        eMv3ihLTTBRvj2v7tk44nYhvmdI0riTf8fwIgMj4N7zR2JNT6CZQ8XHgpuQ98XnM
-        MiUVm/KMlskGwBDaunZ/fpazQi5rH6ECAwEAAaOCAWIwggFeMB0GA1UdDgQWBBQB
-        MK8nBiG3F9wFbMERH8XGC5Dp/DCBxwYDVR0jBIG/MIG8gBQBMK8nBiG3F9wFbMER
-        H8XGC5Dp/KGBjaSBijCBhzELMAkGA1UEBhMCSVIxDzANBgNVBAgMBlRlaHJhbjEP
-        MA0GA1UEBwwGVGVocmFuMQwwCgYDVQQKDANJU0MxDDAKBgNVBAsMA1NFUzEXMBUG
-        A1UEAwwOcHJvbWV0aGV1cy5nb3YxITAfBgkqhkiG9w0BCQEWEnByb21ldGhldXNA
-        aXNjLmdvdoIUafUqlMzBBlX4kiuDt/zYgVbt9h4wDAYDVR0TBAUwAwEB/zALBgNV
-        HQ8EBAMCAvwwKwYDVR0RBCQwIoIOcHJvbWV0aGV1cy5nb3aCECoucHJvbWV0aGV1
-        cy5nb3YwKwYDVR0SBCQwIoIOcHJvbWV0aGV1cy5nb3aCECoucHJvbWV0aGV1cy5n
-        b3YwDQYJKoZIhvcNAQELBQADggEBAKdyWlZRBC6uzeIatOVyhDHbW0zRghOXTxN+
-        wjKrdcT++yYwj3hRwc/2yztlMoki9/0NRe6lI7sc0+7e6XkAQdokkOvAz9ksLYtb
-        NCotFEYiGECmDGXmQ9w4cBKVM/aJU74vAfpvIGf7/pEJib7FLx+Pmr+Lx8w99jFG
-        XJksiVMli4vyw0NqwMUpwMl9wVKAXWIxOsPYJROYOBCj/r+dX6vEYEKD7SHtsmOh
-        3naPZ5AFU15HwRiHh0bt1xQ1XsE76W+OZTv1STiFtYCDbARUO3IXFLsUderRiXMV
-        BH2JEkPlgeXzEbvrYKCzqCTDRXASTVxzXhXP9NORcrLuI7kbd2I=
+        MIIEzTCCA7WgAwIBAgIUDVzcbLPO+Xqdkb65eNnT/dC3soMwDQYJKoZIhvcNAQEL
+        BQAwdzELMAkGA1UEBhMCSVIxEDAOBgNVBAgMB1RlaHJhbicxDTALBgNVBAcMBGFz
+        ZCcxDDAKBgNVBAoMA2FzZDEMMAoGA1UECwwDYXNkMRcwFQYDVQQDDA5wcm9tZXRo
+        ZXVzLmdvdjESMBAGCSqGSIb3DQEJARYDYXNkMB4XDTIzMDUxNTEwMTEyN1oXDTMz
+        MDUxMjEwMTEyN1owdzELMAkGA1UEBhMCSVIxEDAOBgNVBAgMB1RlaHJhbicxDTAL
+        BgNVBAcMBGFzZCcxDDAKBgNVBAoMA2FzZDEMMAoGA1UECwwDYXNkMRcwFQYDVQQD
+        DA5wcm9tZXRoZXVzLmdvdjESMBAGCSqGSIb3DQEJARYDYXNkMIIBIjANBgkqhkiG
+        9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1QOs7VBGCfUjHnb35JjppVYKhILpvdUHmblr
+        5THH8PVkX0HRN7mCZH/vtoEgWHnuxE68AgR1YJpj37AfgYO/LTJPTPOVD8bmSPH7
+        cugCH1A88U5G5aHPy9ZV1Yll4enZkinwk4wgaelI9nkfiP/KFCnwUBQ1kThUh540
+        NWI2/paNbtkx9Oe5xQn448epXJicLXVteZYE9NHxDOLxCztjIgxeDhOs9TPPuZhT
+        cSD0rsO9rHf/nY81Q+jnbXoQbk0lfNxC0zdXhUNFDXVL0RuIlUMnb0TmWgAqhyZC
+        D6g1zPY75avEFJRwnVGU3HteIHzD4HgbC/7fWJCf1CtWPyDWhQIDAQABo4IBTzCC
+        AUswHQYDVR0OBBYEFPOlRCXlfeunuz1/sF9nsINEMjNyMIG0BgNVHSMEgawwgamA
+        FPOlRCXlfeunuz1/sF9nsINEMjNyoXukeTB3MQswCQYDVQQGEwJJUjEQMA4GA1UE
+        CAwHVGVocmFuJzENMAsGA1UEBwwEYXNkJzEMMAoGA1UECgwDYXNkMQwwCgYDVQQL
+        DANhc2QxFzAVBgNVBAMMDnByb21ldGhldXMuZ292MRIwEAYJKoZIhvcNAQkBFgNh
+        c2SCFA1c3Gyzzvl6nZG+uXjZ0/3Qt7KDMAwGA1UdEwQFMAMBAf8wCwYDVR0PBAQD
+        AgL8MCsGA1UdEQQkMCKCDnByb21ldGhldXMuZ292ghAqLnByb21ldGhldXMuZ292
+        MCsGA1UdEgQkMCKCDnByb21ldGhldXMuZ292ghAqLnByb21ldGhldXMuZ292MA0G
+        CSqGSIb3DQEBCwUAA4IBAQCNMDH11blIql+ZWt6rKJV3ifwlF6Tq1ojMdJlk+ulw
+        1gjIz7T/NDe8FZv1RZO6Ae55HaBSoQQCkbFn/2cr7sGMq9b+t7FaD6wIYPRX5zNE
+        zpcOF3jJiEpDnHQs8Jsx8uENSRiDIlMryqAtJbPUp8xN5IMr1BuB1Gvt2N5WGF/c
+        mOHz3q80hW9scfWs3hMMAef0FZNzRCQxTOMUNDyZWf7Te9fRnpjUmo1Gq8Y0bAQh
+        BYRD5w9QdGmFQF8eGdFHCdCeasDXsx8LGSxPWIYY3Rje/sB8zrzeHzligzIAz4cA
+        86MImrsDNBF9XQ0r4dfHlnmP7WcX6v4xWHziHl1+8olh
         -----END CERTIFICATE-----
+
 

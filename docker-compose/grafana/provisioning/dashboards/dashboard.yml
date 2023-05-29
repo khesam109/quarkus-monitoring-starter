@@ -11,7 +11,7 @@ providers:
     folder: ''
 
     # <string> provider type. Default to 'file'
-#    type: 'file'
+    #    type: 'file'
 
     # <int> how often Grafana will scan for changed dashboards
     updateIntervalSeconds: 10
@@ -25,3 +25,4 @@ providers:
 
       # <bool> use folder names from filesystem to create folders in Grafana
       foldersFromFilesStructure: true
+

@@ -13,15 +13,12 @@ services:
       - GF_SERVER_PROTOCOL=https
       - GF_SERVER_CERT_FILE=/home/grafana/tls/grafana.crt
       - GF_SERVER_CERT_KEY=/home/grafana/tls/grafana.key
-      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/blackbox-exporter.json
 
     volumes:
-      #      - ./grafana:/etc/grafana/provisioning/datasources
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
       - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
       - ./grafana/dashboards:/var/lib/grafana/dashboards
-      #      - ./grafana/config/test:/etc/apk/repositories
-      #      - ./grafana/config/grafana.ini:/etc/grafana/asghar/grafana.ini
+      - ./storage/grafana-storage:/var/lib/grafana/
       - ./tls/grafana:/home/grafana/tls
 #    networks:
 #      - ${GLOBAL_NETWORK}
