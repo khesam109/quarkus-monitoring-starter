@@ -26,7 +26,7 @@ scrape_configs:
   # if adding other group, add [job_name] section like follows
   # any name is OK for [job_name]
   - job_name: backend
-    metrics_path: /q/metrics
+    metrics_path: /management/metrics/prometheus
     static_configs:
       - targets: ['backend.gov:8585']
 
