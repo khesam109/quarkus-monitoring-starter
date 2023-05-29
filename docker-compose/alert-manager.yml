@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  alert-manager:
+    image: prom/alertmanager
+    container_name: alert-manager
+    hostname: alertmanager.gov
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--web.external-url=http://alertmanager.gov:9093'
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./alert-manager:/etc/alertmanager
