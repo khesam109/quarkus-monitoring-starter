@@ -1,11 +1,11 @@
 groups:
   - name: alert.rules
     rules:
-      - alert: InstanceDown
-#        https://groups.google.com/g/prometheus-users/c/i-jOoQYI_mk
+      - alert: external_service_not_reachable
         expr: probe_success{instance="192.168.165.96:8685"} == 0
-        for: 10s
+        for: 1m
         labels:
+          type: alert
           severity: "critical"
         annotations:
           summary: "Endpoint {{ $labels.instance }} down"

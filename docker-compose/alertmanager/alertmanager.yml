@@ -1,0 +1,28 @@
+# https://www.robustperception.io/whats-the-difference-between-group_interval-group_wait-and-repeat_interval/
+global:
+templates:
+  - '/etc/alertmanager/*.tmpl'
+route:
+
+  # In order to avoid continuously sending notifications for similar alerts (like the same process failing on multiple instances, nodes, and data centres),
+  # the Alertmanager may be configured to group these related alerts into one alert
+  group_by: ['alertname']
+
+  # How long to wait to buffer alerts of the same group before sending a notification initially.
+  # Usually set between ~0s to a few minutes.
+  group_wait: 1m
+#  group_wait: 2m
+
+  # How long to wait before sending an alert that has been added to a group for which there has already been a notification.
+  # Usually ~5 mins or more.
+  group_interval: 10m
+
+  # How long to wait before re-sending a given alert that has already been sent in a notification.
+  repeat_interval: 5h
+  receiver: 'webhook'
+receivers:
+  - name: 'webhook'
+#    https://prometheus.io/docs/alerting/latest/configuration/#http_config
+    webhook_configs:
+      - url: 'http://192.168.165.96:8585/alert-manager/webhook/alert'
+        send_resolved: true

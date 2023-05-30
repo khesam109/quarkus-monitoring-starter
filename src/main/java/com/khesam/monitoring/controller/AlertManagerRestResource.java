@@ -11,8 +11,14 @@ import jakarta.ws.rs.core.Response;
 public interface AlertManagerRestResource {
 
     @POST
-    @Path("/webhook")
+    @Path("/webhook/alert")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    Response webhook(Object body);
+    Response alert(Object body);
+
+    @POST
+    @Path("/webhook/alert/resolved")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    Response resolved(Object body);
 }
